@@ -1,0 +1,20 @@
+model:
+    use_embeddings: True
+    emb_dim: 768
+    from_pretrained: True
+    weights_path: /scratch/ar8692/hierarchical-geoclip/geoclip/model/weights/
+    gallery_path: /scratch/ar8692/hierarchical-geoclip/geoclip/model/gps_gallery/galleries/coordinates_100K.csv
+
+data:
+    train_path: /scratch/ar8692/hierarchical-geoclip/geoclip/data/datasets/mp-16/mp-16-{000000..000020}.tar
+    val_path: /scratch/ar8692/hierarchical-geoclip/geoclip/data/datasets/mp-16/mp-16-{000021..000022}.tar
+    features_path: /scratch/ar8692/hierarchical-geoclip/geoclip/data/datasets/embeddings3/img_emb/img_emb_0.npy
+    metadata_path: /scratch/ar8692/hierarchical-geoclip/geoclip/data/datasets/embeddings3/metadata/metadata_0.parquet
+
+
+algorithm:
+    batch_size: 512
+    learning_rate: 3e-5
+    img_enc_learning_rate: 3e-4
+    weight_decay: 1e-6
+    epochs: 10
