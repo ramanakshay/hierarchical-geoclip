@@ -2,13 +2,7 @@
 
 The project implements GeoCLIP, a CLIP-inspired image geolocation model. Hierarchical GeoCLIP is an improved inference method that leverages hierarchical feature clustering at multiple geographical scales. By organizing the GPS gallery into a tree structure, we drastically reduce the search space and achieve comparable performance while being ~100x more efficient. 
 
-
-# Table Of Contents
-
--  [Folder Structure](#folder-structure)
--  [License](#license)
-
-# Installation
+# Instructions to run
 
 1.  Clone the repository and go to the project folder.
 ```
