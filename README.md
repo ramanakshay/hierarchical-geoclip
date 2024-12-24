@@ -1,46 +1,27 @@
-# canvas
+# Hierarchical GeoCLIP
 
-A simple, flexible, and well-designed pytorch template for your deep learning projects. The main idea behind this template is to model all machine learning tasks as interactions between an agent with its environment or external data. All components of the project are built around this core idea.
+The project implements GeoCLIP, a CLIP-inspired image geolocation model. Hierarchical GeoCLIP is an improved inference method that leverages hierarchical feature clustering at multiple geographical scales. By organizing the GPS gallery into a tree structure, we drastically reduce the search space and achieve comparable performance while being ~100x more efficient. 
 
-There are multiple templates available for different kinds of machine learning tasks. **Switch to the appropriate branch** and see the installation section to download the template:
-
-- Supervised Learning (SL)
-- Reinforcement Learning (RL)
 
 # Table Of Contents
 
--  [Installation](#installation)
-    - [Requirements](#requirements)
--  [Details](#details)
-    -  [Project Architecture](#project-architecture)
-    -  [Folder Structure](#folder-structure)
-    -  [Components](#components)
- -  [TODO](#todo)
- -  [Contributing](#contributing)
- -  [License](#license)
+-  [Folder Structure](#folder-structure)
+-  [License](#license)
 
 # Installation
 
 1.  Clone the repository and go to the project folder.
 ```
-git clone https://github.com/ramanakshay/canvas --depth 1 --branch sl
-cd canvas
+git clone https://github.com/ramanakshay/hierarchical-geoclip
+cd hierarchical-geoclip
 ```
 
-2. Reset git history.
-```
-rm -rf .git
-git init
-git add --all
-git commit -m “initial canvas commit”
-```
-
-3. Install dependencies from requirements file. Make sure to create a virtual environment before running this command.
+2. Install dependencies from requirements file. Make sure to create a virtual environment before running this command.
 ```
 pip install -r requirements.txt
 ```
 
-4. Test the code.
+4. Download dataset from scripts inside the data folder. Run main.py to train the model
 ```
 python main.py
 ```
@@ -48,22 +29,11 @@ python main.py
 ## Requirements
 - [pytorch](https://pytorch.org/) (An open source deep learning platform)
 - [hydra](https://hydra.cc/) (A framework for configuring complex applications)
+- [sklearn]() (For clustering algorithms)
+- [datasets]() (Hugging Face Datasets)
 
 
-# Details
-
-## Project Architecture
-
-This architecture is inspired from the agent-environment interface in reinforcement learning. The template extends this concept to support all kinds of machine learning tasks.
-
-<div align="center">
-
-<img align="center" src="assets/images/architecture.svg">
-
-</div>
-
-
-## Folder Structure
+# Folder Structure
 ```
 ├──  model              - this folder contains all code (models, networks) of the agent
 │   ├── classifier.py
@@ -71,35 +41,27 @@ This architecture is inspired from the agent-environment interface in reinforcem
 │   └── layers.py
 │
 │
-├── data               - this folder contains code relevant to the data
-│   └── data_loader.py
+├── data                - this folder contains code relevant to the data
+│   ├── preprocessing.py         - run this script to download the data   
+│   └── dataset.py             - dataset classes
+
 │
 │
 ├── algorithm             - this folder contains different algorithms of your project
-│   ├── train.py
-│   └── test.py
+│   └── train.py
 │
 │
 ├──  config
 │    └── config.yaml  - YAML config file for project
 │
 │
-├──  utils            - this (optional) folder contains utilities of your project
-│    └── utils.py
+├──  clustering            - this folder contains code for clustering the GPS gallery
+│    └── cluster.py        - build JSON file from list of GPS coordinates and pre-trained model
 │
 │
 └── main.py           - entry point of the project
 
 ```
-
-# TODO
-
-- [ ] Support for loggers
-
-
-# Contributing
-Any kind of enhancement or contribution is welcomed.
-
 
 # License
 
